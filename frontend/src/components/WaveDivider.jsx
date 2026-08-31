@@ -38,9 +38,9 @@ export default function WaveDivider() {
         <defs>
           <path id="wave-ribbon" ref={ribbonRef} d={RIBBON} fill="none" />
           <linearGradient id="wave-band" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.11" />
-            <stop offset="50%" stopColor="#ffffff" stopOpacity="0.19" />
-            <stop offset="100%" stopColor="#ffffff" stopOpacity="0.11" />
+            <stop offset="0%" stopColor="#e0d3bf" stopOpacity="0.55" />
+            <stop offset="50%" stopColor="#dccdb4" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#e0d3bf" stopOpacity="0.55" />
           </linearGradient>
         </defs>
 
@@ -51,8 +51,8 @@ export default function WaveDivider() {
             de courbe, ce qui rend la boucle invisible. */}
         {length > 0 && (
           <text
-            fill="#e0c069"
-            fillOpacity="0.9"
+            fill="#7d6220"
+            fillOpacity="0.85"
             fontFamily="Cinzel, Georgia, serif"
             fontSize="23"
             letterSpacing="5"
@@ -78,8 +78,8 @@ export default function WaveDivider() {
           </text>
         )}
 
-        {/* Vague blanche */}
-        <path d={WHITE} fill="#ffffff" />
+        {/* Vague ivoire : raccord avec le fond de page */}
+        <path d={WHITE} fill="#faf7f2" />
       </svg>
     </div>
   )

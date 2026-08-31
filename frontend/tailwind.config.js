@@ -4,16 +4,32 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Palette claire : ivoire pour le fond, sable pour les aplats,
+        // encre chaude pour le texte.
+        ivory: {
+          DEFAULT: '#faf7f2',
+          dark: '#f3ede3',
+        },
+        sand: {
+          DEFAULT: '#efe6d9',
+          dark: '#e0d3bf',
+        },
+        ink: {
+          DEFAULT: '#2f2a24',
+          light: '#5f574b',
+          soft: '#8d8376',
+        },
+        // Conserve pour les rares aplats sombres (pinceau du titre).
         night: {
-          DEFAULT: '#162a35',
-          light: '#1d3846',
-          dark: '#0f1f28',
+          DEFAULT: '#2f2a24',
+          light: '#463f36',
+          dark: '#1e1a16',
         },
         gold: {
-          DEFAULT: '#c9a227',
-          light: '#e0c069',
-          soft: '#b8955a',
-          dark: '#8c6d2f',
+          DEFAULT: '#b08d2e',
+          light: '#d9b95c',
+          soft: '#c2a15a',
+          dark: '#7d6220',
         },
       },
       fontFamily: {

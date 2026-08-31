@@ -40,11 +40,11 @@ export default function Hero() {
       <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
         {/* Colonne gauche : titre + CTA */}
         <div className="animate-fadeUp text-center lg:text-left">
-          <h1 className="caps text-[19px] leading-[1.7] text-white sm:text-[22px] lg:text-[23px]">
+          <h1 className="caps text-[19px] leading-[1.7] text-ink sm:text-[22px] lg:text-[23px]">
             Unleash your senses: discover exquisite fragrances that captivate.
           </h1>
           <div className="mx-auto mt-7 h-px w-52 bg-gradient-to-r from-transparent via-gold/70 to-transparent lg:mx-0 lg:bg-gradient-to-r lg:from-gold/70 lg:via-gold/40 lg:to-transparent" />
-          <button className="caps mt-8 rounded-[4px] border border-gold/50 bg-white/10 px-10 py-3 text-[12px] text-gold-light backdrop-blur-sm transition-all hover:bg-gold hover:text-night">
+          <button className="caps mt-8 rounded-[4px] border border-gold/60 bg-white/60 px-10 py-3 text-[12px] text-gold-dark backdrop-blur-sm transition-all hover:bg-gold hover:text-ivory">
             Discover
           </button>
         </div>
@@ -70,7 +70,7 @@ export default function Hero() {
                 {slide.bullets.map((text) => (
                   <li key={text} className="flex gap-3">
                     <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gold" />
-                    <p className="text-[11.5px] leading-[1.75] text-white/75">{text}</p>
+                    <p className="text-[11.5px] leading-[1.75] text-ink-light">{text}</p>
                   </li>
                 ))}
               </ul>
@@ -89,7 +89,7 @@ export default function Hero() {
                 className="relative grid h-6 w-6 place-items-center"
               >
                 <span
-                  className={`caps absolute right-8 whitespace-nowrap text-[11px] text-white transition-opacity duration-700 ${
+                  className={`caps absolute right-8 whitespace-nowrap text-[11px] text-ink transition-opacity duration-700 ${
                     i === index ? 'opacity-100' : 'opacity-0'
                   }`}
                 >
@@ -98,8 +98,8 @@ export default function Hero() {
                 <span
                   className={`rounded-full transition-all duration-500 ${
                     i === index
-                      ? 'h-3.5 w-3.5 bg-gold ring-1 ring-gold ring-offset-2 ring-offset-night'
-                      : 'h-1.5 w-1.5 bg-white/70 hover:bg-white'
+                      ? 'h-3.5 w-3.5 bg-gold ring-1 ring-gold ring-offset-2 ring-offset-ivory'
+                      : 'h-1.5 w-1.5 bg-ink/30 hover:bg-ink/60'
                   }`}
                 />
               </button>
@@ -117,7 +117,7 @@ function Chevron({ dir, onClick }) {
     <button
       onClick={onClick}
       aria-label={dir === 'up' ? 'Precedent' : 'Suivant'}
-      className="text-white/60 transition-colors hover:text-gold-light"
+      className="text-ink/45 transition-colors hover:text-gold-dark"
     >
       <svg
         viewBox="0 0 24 24"

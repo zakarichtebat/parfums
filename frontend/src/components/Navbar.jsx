@@ -22,9 +22,9 @@ export default function Navbar({ cartCount = 0 }) {
 
         <a
           href="#"
-          className="rounded-full border border-white/25 px-6 py-2 sm:px-9 sm:py-2.5"
+          className="rounded-full border border-ink/20 px-6 py-2 sm:px-9 sm:py-2.5"
         >
-          <span className="caps text-[13px] text-white sm:text-[15px]">
+          <span className="caps text-[13px] text-ink sm:text-[15px]">
             Perfume Shop
           </span>
         </a>
@@ -37,7 +37,7 @@ export default function Navbar({ cartCount = 0 }) {
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
-            className="ml-1 grid h-9 w-9 place-items-center rounded-full border border-white/25 text-white md:hidden"
+            className="ml-1 grid h-9 w-9 place-items-center rounded-full border border-ink/20 text-ink md:hidden"
           >
             <span className="text-lg leading-none">{open ? '×' : '≡'}</span>
           </button>
@@ -46,7 +46,7 @@ export default function Navbar({ cartCount = 0 }) {
 
       {/* Separateur + navigation principale */}
       <nav className="mx-auto mt-5 max-w-4xl px-5 sm:px-8">
-        <div className="border-t border-white/15" />
+        <div className="border-t border-ink/12" />
         <ul
           className={`${
             open ? 'flex' : 'hidden'
@@ -62,8 +62,8 @@ export default function Navbar({ cartCount = 0 }) {
                 }}
                 className={`caps group relative text-[11px] transition-colors sm:text-xs ${
                   active === link.label
-                    ? 'text-gold-light'
-                    : 'text-white/80 hover:text-gold-light'
+                    ? 'text-gold-dark'
+                    : 'text-ink-light hover:text-gold-dark'
                 }`}
               >
                 {link.label}
@@ -85,7 +85,7 @@ function IconButton({ children, label }) {
   return (
     <button
       aria-label={label}
-      className="grid h-9 w-9 place-items-center rounded-full border border-white/25 text-white transition-colors hover:border-gold hover:text-gold-light sm:h-10 sm:w-10"
+      className="grid h-9 w-9 place-items-center rounded-full border border-ink/20 text-ink transition-colors hover:border-gold hover:text-gold-dark sm:h-10 sm:w-10"
     >
       {children}
     </button>

@@ -39,12 +39,12 @@ export default function App() {
   const handleAddToCart = (perfume) => setCart((c) => [...c, perfume])
 
   return (
-    <div id="top" className="min-h-screen bg-white">
+    <div id="top" className="min-h-screen bg-ivory">
       <StickyNav cartCount={cart.length} />
 
       {/* Bloc bleu nuit + vague de transition */}
-      <div className="relative bg-night">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(201,162,39,0.10),transparent_60%)]" />
+      <div className="relative bg-gradient-to-b from-ivory-dark via-ivory to-sand">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(176,141,46,0.12),transparent_62%)]" />
         <Navbar cartCount={cart.length} />
         <Hero />
         <WaveDivider />

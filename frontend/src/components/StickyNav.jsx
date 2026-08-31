@@ -24,9 +24,9 @@ export default function StickyNav({ cartCount = 0 }) {
   if (!visible) return null
 
   return (
-    <div className="fixed inset-x-0 top-0 z-50 animate-slideDown border-b border-white/10 bg-night/90 backdrop-blur-md">
+    <div className="fixed inset-x-0 top-0 z-50 animate-slideDown border-b border-ink/10 bg-ivory/90 shadow-[0_8px_24px_-18px_rgba(47,42,36,0.5)] backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
-        <a href="#" className="caps text-[12px] text-white">
+        <a href="#top" className="caps text-[12px] text-ink">
           Perfume Shop
         </a>
 
@@ -35,7 +35,7 @@ export default function StickyNav({ cartCount = 0 }) {
             <li key={link.label}>
               <a
                 href={link.href}
-                className="caps group relative text-[10px] text-white/80 transition-colors hover:text-gold-light"
+                className="caps group relative text-[10px] text-ink-light transition-colors hover:text-gold-dark"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
@@ -54,7 +54,7 @@ export function CartButton({ count = 0, className = '' }) {
   return (
     <button
       aria-label={`Panier, ${count} article(s)`}
-      className={`relative grid h-9 w-9 place-items-center rounded-full border border-white/25 text-white transition-colors hover:border-gold hover:text-gold-light ${className}`}
+      className={`relative grid h-9 w-9 place-items-center rounded-full border border-ink/20 text-ink transition-colors hover:border-gold hover:text-gold-dark ${className}`}
     >
       <svg
         viewBox="0 0 24 24"
@@ -71,7 +71,7 @@ export function CartButton({ count = 0, className = '' }) {
       {count > 0 && (
         <span
           key={count}
-          className="absolute -right-1 -top-1 grid h-[18px] min-w-[18px] animate-bump place-items-center rounded-full bg-gold px-1 text-[10px] font-semibold text-night"
+          className="absolute -right-1 -top-1 grid h-[18px] min-w-[18px] animate-bump place-items-center rounded-full bg-gold px-1 text-[10px] font-semibold text-ivory"
         >
           {count}
         </span>

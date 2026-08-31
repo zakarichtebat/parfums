@@ -20,8 +20,8 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
 
   return (
     <article
-      className={`arch group flex flex-col overflow-hidden pb-5 shadow-[0_18px_40px_-24px_rgba(22,42,53,0.55)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_34px_60px_-26px_rgba(22,42,53,0.65)] ${
-        dark ? 'bg-night text-white' : 'bg-white text-night'
+      className={`arch group flex flex-col overflow-hidden pb-5 border border-ink/8 shadow-[0_18px_40px_-26px_rgba(47,42,36,0.45)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_34px_60px_-28px_rgba(47,42,36,0.5)] ${
+        dark ? 'bg-sand text-ink' : 'bg-white text-ink'
       }`}
     >
       {/* Visuel */}
@@ -39,10 +39,10 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
         />
 
         {/* Voile qui se leve au survol */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/70 via-night/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
         {is_on_sale && discount > 0 && (
-          <span className="absolute left-0 top-6 rounded-r-[4px] bg-night/85 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm">
+          <span className="absolute left-0 top-6 rounded-r-[4px] bg-ink/85 px-2.5 py-1 text-[10px] font-medium text-ivory backdrop-blur-sm">
             {discount}% off
           </span>
         )}
@@ -57,7 +57,7 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
           <svg
             viewBox="0 0 24 24"
             className={`h-4 w-4 transition-colors ${
-              liked ? 'fill-gold stroke-gold' : 'fill-none stroke-night/70'
+              liked ? 'fill-gold stroke-gold' : 'fill-none stroke-ink/70'
             }`}
             strokeWidth="1.7"
             strokeLinecap="round"
@@ -68,7 +68,7 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
         </button>
 
         {/* Apercu rapide */}
-        <span className="caps pointer-events-none absolute inset-x-3 bottom-3 translate-y-3 rounded-full bg-white/95 py-2 text-center text-[9px] text-night opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
+        <span className="caps pointer-events-none absolute inset-x-3 bottom-3 translate-y-3 rounded-full bg-white/95 py-2 text-center text-[9px] text-ink opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
           Quick view
         </span>
       </div>
@@ -79,7 +79,7 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
           <h3 className="caps text-[11px] leading-tight">{name}</h3>
           <span
             className={`flex shrink-0 items-center gap-1 text-[10px] ${
-              dark ? 'text-white/85' : 'text-night/75'
+              dark ? 'text-ink/75' : 'text-ink/75'
             }`}
           >
             <Star /> {Number(rating).toFixed(1)}
@@ -93,7 +93,7 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
           {old_price > 0 && (
             <span
               className={`text-[11px] line-through ${
-                dark ? 'text-white/45' : 'text-night/40'
+                dark ? 'text-ink/45' : 'text-ink/40'
               }`}
             >
               ${Number(old_price).toFixed(2)}
@@ -103,7 +103,7 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
 
         <button
           onClick={handleAdd}
-          className="caps group/btn relative mt-3 w-full overflow-hidden rounded-full bg-gradient-to-b from-gold-light to-gold-soft py-2 text-[10px] text-night shadow-sm transition-all duration-300 hover:from-gold hover:to-gold-dark hover:text-white active:scale-[0.97]"
+          className="caps group/btn relative mt-3 w-full overflow-hidden rounded-full bg-gradient-to-b from-gold-light to-gold-soft py-2 text-[10px] text-ink shadow-sm transition-all duration-300 hover:from-gold hover:to-gold-dark hover:text-ivory active:scale-[0.97]"
         >
           <span className="relative z-10">
             {added ? '✓ Added' : 'Add to Cart'}

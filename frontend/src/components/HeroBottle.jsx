@@ -35,7 +35,7 @@ export default function HeroBottle({ slides, index }) {
             alt={slide.brand}
             loading={i === 0 ? 'eager' : 'lazy'}
             aria-hidden={i !== index}
-            className={`absolute inset-y-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_28px_38px_rgba(0,0,0,0.55)] transition-all duration-[1600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] ${
+            className={`absolute inset-y-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_26px_34px_rgba(47,42,36,0.28)] transition-all duration-[1600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] ${
               i === index
                 ? 'scale-100 opacity-100 blur-0'
                 : 'pointer-events-none scale-[0.88] opacity-0 blur-[6px]'
@@ -52,7 +52,7 @@ export default function HeroBottle({ slides, index }) {
           {particles.map((p) => (
             <span
               key={p.id}
-              className="absolute bottom-[22%] animate-drift rounded-full bg-gold-light"
+              className="absolute bottom-[22%] animate-drift rounded-full bg-gold"
               style={{
                 left: `${p.left}%`,
                 width: `${p.size}px`,
