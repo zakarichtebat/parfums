@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 
-const LINKS = ['Home', 'Shop', 'About Us', 'Contact Us']
+const LINKS = [
+  { label: 'Home', href: '#top' },
+  { label: 'Shop', href: '#shop' },
+  { label: 'About Us', href: '#about' },
+  { label: 'Contact Us', href: '#contact' },
+]
 
 /**
  * Barre compacte qui descend une fois le hero depasse.
@@ -27,9 +32,12 @@ export default function StickyNav({ cartCount = 0 }) {
 
         <ul className="hidden items-center gap-10 md:flex">
           {LINKS.map((link) => (
-            <li key={link}>
-              <a href="#" className="caps group relative text-[10px] text-white/80 transition-colors hover:text-gold-light">
-                {link}
+            <li key={link.label}>
+              <a
+                href={link.href}
+                className="caps group relative text-[10px] text-white/80 transition-colors hover:text-gold-light"
+              >
+                {link.label}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
               </a>
             </li>

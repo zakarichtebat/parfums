@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import { CartButton } from './StickyNav'
 
-const LINKS = ['Home', 'Shop', 'About Us', 'Contact Us']
+const LINKS = [
+  { label: 'Home', href: '#top' },
+  { label: 'Shop', href: '#shop' },
+  { label: 'About Us', href: '#about' },
+  { label: 'Contact Us', href: '#contact' },
+]
 
 export default function Navbar({ cartCount = 0 }) {
   const [active, setActive] = useState('Home')
@@ -48,23 +53,23 @@ export default function Navbar({ cartCount = 0 }) {
           } flex-col items-center gap-4 py-5 md:flex md:flex-row md:justify-center md:gap-12 lg:gap-20`}
         >
           {LINKS.map((link) => (
-            <li key={link}>
+            <li key={link.label}>
               <a
-                href="#"
+                href={link.href}
                 onClick={() => {
-                  setActive(link)
+                  setActive(link.label)
                   setOpen(false)
                 }}
                 className={`caps group relative text-[11px] transition-colors sm:text-xs ${
-                  active === link
+                  active === link.label
                     ? 'text-gold-light'
                     : 'text-white/80 hover:text-gold-light'
                 }`}
               >
-                {link}
+                {link.label}
                 <span
                   className={`absolute -bottom-1.5 left-0 h-px bg-gold transition-all duration-300 ${
-                    active === link ? 'w-full' : 'w-0 group-hover:w-full'
+                    active === link.label ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
                 />
               </a>

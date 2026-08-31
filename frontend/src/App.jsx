@@ -4,6 +4,7 @@ import StickyNav from './components/StickyNav'
 import Hero from './components/Hero'
 import WaveDivider from './components/WaveDivider'
 import ProductsSection from './components/ProductsSection'
+import AboutSection from './components/AboutSection'
 import Footer from './components/Footer'
 import { MOCK_PERFUMES } from './data/perfumes'
 import { fetchPerfumes } from './services/api'
@@ -38,7 +39,7 @@ export default function App() {
   const handleAddToCart = (perfume) => setCart((c) => [...c, perfume])
 
   return (
-    <div className="min-h-screen bg-white">
+    <div id="top" className="min-h-screen bg-white">
       <StickyNav cartCount={cart.length} />
 
       {/* Bloc bleu nuit + vague de transition */}
@@ -55,6 +56,7 @@ export default function App() {
           loading={loading}
           onAddToCart={handleAddToCart}
         />
+        <AboutSection />
       </main>
 
       <Footer />

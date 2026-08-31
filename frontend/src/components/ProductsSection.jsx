@@ -6,7 +6,7 @@ export default function ProductsSection({ perfumes, loading = false, onAddToCart
   const [gridRef, gridInView] = useInView({ threshold: 0.1 })
 
   return (
-    <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+    <section id="shop" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20">
       {/* Titre sur fond "coup de pinceau" */}
       <div ref={titleRef} className="mb-12 flex justify-center">
         <div
