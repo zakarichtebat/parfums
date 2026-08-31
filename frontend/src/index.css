@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-body text-night antialiased;
+  }
+}
+
+@layer base {
+  /* Accessibilite : on coupe le flottement et les particules si l'utilisateur
+     a demande a reduire les animations. */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-floaty,
+    .animate-drift,
+    .animate-halo {
+      animation: none !important;
+    }
+  }
+}
+
+@layer components {
+  /* Petites majuscules espacees, comme la maquette */
+  .caps {
+    @apply font-display uppercase tracking-wider2;
+  }
+  /* Forme "arche" des cartes produit : coins superieurs tres arrondis */
+  .arch {
+    border-radius: 34px 34px 14px 14px;
+  }
+  .arch-media {
+    border-radius: 26px 26px 8px 8px;
+  }
+}
