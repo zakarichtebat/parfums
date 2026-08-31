@@ -1,65 +1,28 @@
-import { useEffect, useState } from 'react'
-import Navbar from './components/Navbar'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { CartProvider } from './context/CartContext'
+import ScrollToTop from './components/ScrollToTop'
 import StickyNav from './components/StickyNav'
-import Hero from './components/Hero'
-import WaveDivider from './components/WaveDivider'
-import ProductsSection from './components/ProductsSection'
-import AboutSection from './components/AboutSection'
 import Footer from './components/Footer'
-import { MOCK_PERFUMES } from './data/perfumes'
-import { fetchPerfumes } from './services/api'
-
-// Passe a true une fois l'API Laravel lancee (ETAPE 2).
-const USE_API = false
+import HomePage from './pages/HomePage'
+import ShopPage from './pages/ShopPage'
+import ProductPage from './pages/ProductPage'
 
 export default function App() {
-  const [perfumes, setPerfumes] = useState(MOCK_PERFUMES)
-  const [loading, setLoading] = useState(USE_API)
-  const [cart, setCart] = useState([])
-
-  useEffect(() => {
-    if (!USE_API) return
-    let cancelled = false
-    fetchPerfumes()
-      .then((data) => {
-        if (!cancelled) setPerfumes(data)
-      })
-      .catch((err) => {
-        console.error('API indisponible, on garde les donnees mock.', err)
-        if (!cancelled) setPerfumes(MOCK_PERFUMES)
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  const handleAddToCart = (perfume) => setCart((c) => [...c, perfume])
-
   return (
-    <div id="top" className="min-h-screen bg-ivory">
-      <StickyNav cartCount={cart.length} />
-
-      {/* Bloc bleu nuit + vague de transition */}
-      <div className="relative bg-gradient-to-b from-ivory-dark via-ivory to-sand">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(176,141,46,0.12),transparent_62%)]" />
-        <Navbar cartCount={cart.length} />
-        <Hero />
-        <WaveDivider />
-      </div>
-
-      <main>
-        <ProductsSection
-          perfumes={perfumes}
-          loading={loading}
-          onAddToCart={handleAddToCart}
-        />
-        <AboutSection />
-      </main>
-
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <CartProvider>
+        <ScrollToTop />
+        <div id="top" className="min-h-screen bg-ivory">
+          <StickyNav />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/product/:slug" element={<ProductPage />} />
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+          <Footer />
+        </div>
+      </CartProvider>
+    </BrowserRouter>
   )
 }

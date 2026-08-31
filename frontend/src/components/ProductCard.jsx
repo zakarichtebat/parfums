@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 
-export default function ProductCard({ perfume, dark = false, onAddToCart }) {
-  const { name, price, old_price, rating, image_url, fallback_url, is_on_sale } =
+export default function ProductCard({ perfume, dark = false }) {
+  const { name, slug, price, old_price, rating, image_url, fallback_url, is_on_sale, is_new } =
     perfume
+  const { addItem } = useCart()
   const [liked, setLiked] = useState(false)
   const [added, setAdded] = useState(false)
 
@@ -13,7 +16,7 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
       : 0
 
   const handleAdd = () => {
-    onAddToCart?.(perfume)
+    addItem(perfume, { volume: 30, quantity: 1, unitPrice: price })
     setAdded(true)
     setTimeout(() => setAdded(false), 1400)
   }
@@ -25,7 +28,7 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
       }`}
     >
       {/* Visuel */}
-      <div className="arch-media relative m-2.5 overflow-hidden">
+      <Link to={`/product/${slug}`} className="arch-media relative m-2.5 block overflow-hidden">
         <img
           src={image_url}
           alt={name}
@@ -41,15 +44,25 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
         {/* Voile qui se leve au survol */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-        {is_on_sale && discount > 0 && (
-          <span className="absolute left-0 top-6 rounded-r-[4px] bg-ink/85 px-2.5 py-1 text-[10px] font-medium text-ivory backdrop-blur-sm">
-            {discount}% off
-          </span>
-        )}
+        <div className="absolute left-0 top-6 flex flex-col gap-1.5">
+          {is_on_sale && discount > 0 && (
+            <span className="rounded-r-[4px] bg-ink/85 px-2.5 py-1 text-[10px] font-medium text-ivory backdrop-blur-sm">
+              {discount}% off
+            </span>
+          )}
+          {is_new && (
+            <span className="rounded-r-[4px] bg-gold px-2.5 py-1 text-[10px] font-medium text-ivory">
+              New
+            </span>
+          )}
+        </div>
 
         {/* Coup de coeur */}
         <button
-          onClick={() => setLiked((v) => !v)}
+          onClick={(e) => {
+            e.preventDefault()
+            setLiked((v) => !v)
+          }}
           aria-label={liked ? 'Retirer des favoris' : 'Ajouter aux favoris'}
           aria-pressed={liked}
           className="absolute right-3 top-3 grid h-8 w-8 translate-y-2 place-items-center rounded-full bg-white/90 opacity-0 backdrop-blur-sm transition-all duration-300 hover:scale-110 group-hover:translate-y-0 group-hover:opacity-100"
@@ -71,12 +84,14 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
         <span className="caps pointer-events-none absolute inset-x-3 bottom-3 translate-y-3 rounded-full bg-white/95 py-2 text-center text-[9px] text-ink opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
           Quick view
         </span>
-      </div>
+      </Link>
 
       {/* Infos */}
       <div className="flex flex-1 flex-col px-4 pt-1">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="caps text-[11px] leading-tight">{name}</h3>
+          <Link to={`/product/${slug}`} className="caps text-[11px] leading-tight transition-colors hover:text-gold-dark">
+            {name}
+          </Link>
           <span
             className={`flex shrink-0 items-center gap-1 text-[10px] ${
               dark ? 'text-ink/75' : 'text-ink/75'

@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom'
 import ProductCard from './ProductCard'
 import useInView from '../hooks/useInView'
 
-export default function ProductsSection({ perfumes, loading = false, onAddToCart }) {
+export default function ProductsSection({ perfumes, loading = false }) {
   const [titleRef, titleInView] = useInView()
   const [gridRef, gridInView] = useInView({ threshold: 0.1 })
 
@@ -41,16 +42,22 @@ export default function ProductsSection({ perfumes, loading = false, onAddToCart
                 gridInView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
             >
-              <ProductCard
-                perfume={perfume}
-                // Alternance subtile blanc / bleu nuit
-                dark={i % 2 === 1}
-                onAddToCart={onAddToCart}
-              />
+              {/* Alternance subtile blanc / sable */}
+              <ProductCard perfume={perfume} dark={i % 2 === 1} />
             </div>
           ))}
         </div>
       )}
+
+      <div className="mt-14 flex justify-center">
+        <Link
+          to="/shop"
+          className="caps group relative overflow-hidden rounded-full border border-ink/25 px-10 py-3 text-[10px] text-ink transition-all hover:border-ink hover:bg-ink hover:text-ivory"
+        >
+          <span className="relative z-10">View all fragrances</span>
+          <span className="absolute inset-y-0 -left-full w-1/3 bg-gold/40 blur-sm group-hover:animate-shine" />
+        </Link>
+      </div>
     </section>
   )
 }

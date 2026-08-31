@@ -1,14 +1,17 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { CartButton } from './StickyNav'
+import { useCart } from '../context/CartContext'
 
 const LINKS = [
-  { label: 'Home', href: '#top' },
-  { label: 'Shop', href: '#shop' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Shop', to: '/shop' },
+  { label: 'About Us', to: '/#about' },
+  { label: 'Contact Us', to: '/#contact' },
 ]
 
-export default function Navbar({ cartCount = 0 }) {
+export default function Navbar() {
+  const { count: cartCount } = useCart()
   const [active, setActive] = useState('Home')
   const [open, setOpen] = useState(false)
 
@@ -20,14 +23,14 @@ export default function Navbar({ cartCount = 0 }) {
           <UserIcon />
         </IconButton>
 
-        <a
-          href="#"
-          className="rounded-full border border-ink/20 px-6 py-2 sm:px-9 sm:py-2.5"
+        <Link
+          to="/"
+          className="rounded-full border border-ink/20 px-6 py-2 transition-colors hover:border-gold sm:px-9 sm:py-2.5"
         >
           <span className="caps text-[13px] text-ink sm:text-[15px]">
             Perfume Shop
           </span>
-        </a>
+        </Link>
 
         <div className="flex items-center gap-2 sm:gap-3">
           <IconButton label="Rechercher">
@@ -54,8 +57,8 @@ export default function Navbar({ cartCount = 0 }) {
         >
           {LINKS.map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
+              <Link
+                to={link.to}
                 onClick={() => {
                   setActive(link.label)
                   setOpen(false)
@@ -72,7 +75,7 @@ export default function Navbar({ cartCount = 0 }) {
                     active === link.label ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
                 />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

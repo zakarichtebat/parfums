@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 
 const LINKS = [
-  { label: 'Home', href: '#top' },
-  { label: 'Shop', href: '#shop' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Shop', to: '/shop' },
+  { label: 'About Us', to: '/#about' },
+  { label: 'Contact Us', to: '/#contact' },
 ]
 
 /**
  * Barre compacte qui descend une fois le hero depasse.
  * Le menu d'origine reste intact en haut de page.
  */
-export default function StickyNav({ cartCount = 0 }) {
+export default function StickyNav() {
+  const { count } = useCart()
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -26,25 +29,25 @@ export default function StickyNav({ cartCount = 0 }) {
   return (
     <div className="fixed inset-x-0 top-0 z-50 animate-slideDown border-b border-ink/10 bg-ivory/90 shadow-[0_8px_24px_-18px_rgba(47,42,36,0.5)] backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
-        <a href="#top" className="caps text-[12px] text-ink">
+        <Link to="/" className="caps text-[12px] text-ink">
           Perfume Shop
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-10 md:flex">
           {LINKS.map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
+              <Link
+                to={link.to}
                 className="caps group relative text-[10px] text-ink-light transition-colors hover:text-gold-dark"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
-        <CartButton count={cartCount} />
+        <CartButton count={count} />
       </div>
     </div>
   )
