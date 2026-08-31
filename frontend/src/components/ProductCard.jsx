@@ -1,15 +1,26 @@
+import { useState } from 'react'
+
 export default function ProductCard({ perfume, dark = false, onAddToCart }) {
   const { name, price, old_price, rating, image_url, fallback_url, is_on_sale } =
     perfume
+  const [liked, setLiked] = useState(false)
+  const [added, setAdded] = useState(false)
+
   // Remise arrondie au multiple de 5 le plus proche (badge commercial : "20% off")
   const discount =
     old_price > 0
       ? Math.round(((old_price - price) / old_price) * 100 / 5) * 5
       : 0
 
+  const handleAdd = () => {
+    onAddToCart?.(perfume)
+    setAdded(true)
+    setTimeout(() => setAdded(false), 1400)
+  }
+
   return (
     <article
-      className={`arch group flex flex-col overflow-hidden pb-5 shadow-[0_18px_40px_-24px_rgba(22,42,53,0.55)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_55px_-24px_rgba(22,42,53,0.6)] ${
+      className={`arch group flex flex-col overflow-hidden pb-5 shadow-[0_18px_40px_-24px_rgba(22,42,53,0.55)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_34px_60px_-26px_rgba(22,42,53,0.65)] ${
         dark ? 'bg-night text-white' : 'bg-white text-night'
       }`}
     >
@@ -24,13 +35,42 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
               e.currentTarget.src = fallback_url
             }
           }}
-          className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-72"
+          className="h-64 w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110 sm:h-72"
         />
+
+        {/* Voile qui se leve au survol */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/70 via-night/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
         {is_on_sale && discount > 0 && (
           <span className="absolute left-0 top-6 rounded-r-[4px] bg-night/85 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm">
             {discount}% off
           </span>
         )}
+
+        {/* Coup de coeur */}
+        <button
+          onClick={() => setLiked((v) => !v)}
+          aria-label={liked ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+          aria-pressed={liked}
+          className="absolute right-3 top-3 grid h-8 w-8 translate-y-2 place-items-center rounded-full bg-white/90 opacity-0 backdrop-blur-sm transition-all duration-300 hover:scale-110 group-hover:translate-y-0 group-hover:opacity-100"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className={`h-4 w-4 transition-colors ${
+              liked ? 'fill-gold stroke-gold' : 'fill-none stroke-night/70'
+            }`}
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9Z" />
+          </svg>
+        </button>
+
+        {/* Apercu rapide */}
+        <span className="caps pointer-events-none absolute inset-x-3 bottom-3 translate-y-3 rounded-full bg-white/95 py-2 text-center text-[9px] text-night opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
+          Quick view
+        </span>
       </div>
 
       {/* Infos */}
@@ -62,10 +102,14 @@ export default function ProductCard({ perfume, dark = false, onAddToCart }) {
         </div>
 
         <button
-          onClick={() => onAddToCart?.(perfume)}
-          className="caps mt-3 w-full rounded-full bg-gradient-to-b from-gold-light to-gold-soft py-2 text-[10px] text-night shadow-sm transition-all hover:from-gold hover:to-gold-dark hover:text-white"
+          onClick={handleAdd}
+          className="caps group/btn relative mt-3 w-full overflow-hidden rounded-full bg-gradient-to-b from-gold-light to-gold-soft py-2 text-[10px] text-night shadow-sm transition-all duration-300 hover:from-gold hover:to-gold-dark hover:text-white active:scale-[0.97]"
         >
-          Add to Cart
+          <span className="relative z-10">
+            {added ? '✓ Added' : 'Add to Cart'}
+          </span>
+          {/* Balayage lumineux au survol */}
+          <span className="absolute inset-y-0 -left-full w-1/3 bg-white/45 blur-sm group-hover/btn:animate-shine" />
         </button>
       </div>
     </article>

@@ -42,6 +42,22 @@ export default {
             transform: 'translate3d(var(--drift-x,0), -150px, 0) scale(1.15)',
           },
         },
+        // Balayage lumineux sur les boutons dores.
+        shine: {
+          '0%': { transform: 'translateX(-130%) skewX(-20deg)' },
+          '100%': { transform: 'translateX(240%) skewX(-20deg)' },
+        },
+        // Petit rebond du compteur du panier.
+        bump: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '35%': { transform: 'scale(1.45)' },
+          '65%': { transform: 'scale(0.92)' },
+        },
+        // Descente de la barre de navigation compacte.
+        slideDown: {
+          '0%': { opacity: 0, transform: 'translateY(-100%)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
         // Le halo dore "respire" au moment du changement de flacon.
         halo: {
           '0%': { opacity: 0.35, transform: 'scale(0.9)' },
@@ -54,6 +70,9 @@ export default {
         fadeUp: 'fadeUp .7s ease-out both',
         drift: 'drift 1.2s ease-out forwards',
         halo: 'halo 2.4s ease-out forwards',
+        shine: 'shine 1.1s ease-out',
+        bump: 'bump .5s ease-out',
+        slideDown: 'slideDown .45s ease-out both',
       },
     },
   },

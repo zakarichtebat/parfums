@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { CartButton } from './StickyNav'
 
 const LINKS = ['Home', 'Shop', 'About Us', 'Contact Us']
 
-export default function Navbar() {
+export default function Navbar({ cartCount = 0 }) {
   const [active, setActive] = useState('Home')
   const [open, setOpen] = useState(false)
 
@@ -27,9 +28,7 @@ export default function Navbar() {
           <IconButton label="Rechercher">
             <SearchIcon />
           </IconButton>
-          <IconButton label="Panier">
-            <BagIcon />
-          </IconButton>
+          <CartButton count={cartCount} className="sm:h-10 sm:w-10" />
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
@@ -56,13 +55,18 @@ export default function Navbar() {
                   setActive(link)
                   setOpen(false)
                 }}
-                className={`caps text-[11px] transition-colors sm:text-xs ${
+                className={`caps group relative text-[11px] transition-colors sm:text-xs ${
                   active === link
                     ? 'text-gold-light'
                     : 'text-white/80 hover:text-gold-light'
                 }`}
               >
                 {link}
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-px bg-gold transition-all duration-300 ${
+                    active === link ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                />
               </a>
             </li>
           ))}
@@ -105,15 +109,6 @@ function SearchIcon() {
     <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" {...stroke}>
       <circle cx="11" cy="11" r="6.2" />
       <path d="M15.6 15.6 20 20" />
-    </svg>
-  )
-}
-
-function BagIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" {...stroke}>
-      <path d="M6 8h12l-1 12H7L6 8Z" />
-      <path d="M9.2 8V6.6a2.8 2.8 0 0 1 5.6 0V8" />
     </svg>
   )
 }

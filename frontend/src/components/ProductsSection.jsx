@@ -1,11 +1,19 @@
 import ProductCard from './ProductCard'
+import useInView from '../hooks/useInView'
 
 export default function ProductsSection({ perfumes, loading = false, onAddToCart }) {
+  const [titleRef, titleInView] = useInView()
+  const [gridRef, gridInView] = useInView({ threshold: 0.1 })
+
   return (
     <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
       {/* Titre sur fond "coup de pinceau" */}
-      <div className="mb-12 flex justify-center">
-        <div className="relative inline-flex items-center justify-center px-14 py-5">
+      <div ref={titleRef} className="mb-12 flex justify-center">
+        <div
+          className={`relative inline-flex items-center justify-center px-14 py-5 transition-all duration-700 ${
+            titleInView ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+          }`}
+        >
           <BrushStroke />
           <h2 className="caps relative text-[12px] text-white sm:text-[13px]">
             Shop Signature Perfumes
@@ -20,15 +28,26 @@ export default function ProductsSection({ perfumes, loading = false, onAddToCart
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {perfumes.map((perfume, i) => (
-            <ProductCard
+            <div
               key={perfume.id}
-              perfume={perfume}
-              // Alternance subtile blanc / bleu nuit
-              dark={i % 2 === 1}
-              onAddToCart={onAddToCart}
-            />
+              // Apparition en cascade : chaque carte arrive 120 ms apres la precedente
+              style={{ transitionDelay: gridInView ? `${i * 120}ms` : '0ms' }}
+              className={`transition-all duration-700 ease-out ${
+                gridInView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
+              <ProductCard
+                perfume={perfume}
+                // Alternance subtile blanc / bleu nuit
+                dark={i % 2 === 1}
+                onAddToCart={onAddToCart}
+              />
+            </div>
           ))}
         </div>
       )}

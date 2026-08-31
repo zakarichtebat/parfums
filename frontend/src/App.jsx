@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
+import StickyNav from './components/StickyNav'
 import Hero from './components/Hero'
 import WaveDivider from './components/WaveDivider'
 import ProductsSection from './components/ProductsSection'
+import Footer from './components/Footer'
 import { MOCK_PERFUMES } from './data/perfumes'
 import { fetchPerfumes } from './services/api'
 
@@ -37,10 +39,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white">
+      <StickyNav cartCount={cart.length} />
+
       {/* Bloc bleu nuit + vague de transition */}
       <div className="relative bg-night">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(201,162,39,0.10),transparent_60%)]" />
-        <Navbar />
+        <Navbar cartCount={cart.length} />
         <Hero />
         <WaveDivider />
       </div>
@@ -53,11 +57,7 @@ export default function App() {
         />
       </main>
 
-      <footer className="bg-night py-8 text-center">
-        <p className="caps text-[10px] text-white/50">
-          Perfume Shop — {cart.length} article(s) dans le panier
-        </p>
-      </footer>
+      <Footer />
     </div>
   )
 }
