@@ -33,7 +33,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative z-10 mx-auto max-w-6xl px-5 pb-24 pt-10 sm:px-8 sm:pb-32 lg:pb-40"
+      className="relative z-10 mx-auto max-w-6xl px-5 pb-28 pt-10 sm:px-8 sm:pb-40 lg:pb-52"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
