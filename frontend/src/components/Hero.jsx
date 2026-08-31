@@ -3,7 +3,7 @@ import { HERO_SLIDES } from '../data/perfumes'
 import HeroBottle from './HeroBottle'
 
 // Duree d'affichage d'un flacon avant de passer au suivant.
-const SLIDE_DURATION = 4600
+const SLIDE_DURATION = 1500
 
 export default function Hero() {
   const [index, setIndex] = useState(1) // "Dior" actif, comme la maquette
@@ -61,7 +61,7 @@ export default function Hero() {
               <ul
                 key={slide.id}
                 aria-hidden={i !== index}
-                className={`absolute inset-0 space-y-7 transition-all duration-[1200ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] ${
+                className={`absolute inset-0 space-y-7 transition-all duration-[500ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] ${
                   i === index
                     ? 'translate-y-0 opacity-100'
                     : 'pointer-events-none translate-y-3 opacity-0'

@@ -80,7 +80,7 @@ export const HERO_SLIDES = [
   {
     id: 'noir-absolu',
     brand: 'Noir',
-    image: '/images/bottles/bottle-noir.png',
+    image: '/images/bottles/bottle-oud.png',
     bullets: [
       'Black pepper and bergamot sharpened by vetiver, wrapped in a textured glass carved like polished obsidian.',
       'Built for the night: bold, mineral and magnetic, it holds its intensity from the first hour to the last.',
@@ -89,7 +89,7 @@ export const HERO_SLIDES = [
   {
     id: 'eternal-elegance',
     brand: 'Eternal',
-    image: '/images/bottles/bottle-crystal.png',
+    image: '/images/bottles/bottle-azure.png',
     bullets: [
       'A crystalline bouquet of white rose, peony and clean musk, as luminous as the faceted flacon that holds it.',
       'Understated and timeless, it turns a simple gesture into a lasting impression wherever you go.',
@@ -98,7 +98,7 @@ export const HERO_SLIDES = [
   {
     id: 'celestial-symphony',
     brand: 'Celestial',
-    image: '/images/bottles/bottle-silver.png',
+    image: '/images/bottles/bottle-celestial.png',
     bullets: [
       'Cool bergamot and pink pepper drift over a soft cedar base, cut by a facet of crystalline musk.',
       'A radiant, confident sillage that captures attention without ever raising its voice.',

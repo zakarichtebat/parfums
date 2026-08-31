@@ -52,7 +52,7 @@ export default {
       animation: {
         floaty: 'floaty 6s ease-in-out infinite',
         fadeUp: 'fadeUp .7s ease-out both',
-        drift: 'drift 3s ease-out forwards',
+        drift: 'drift 1.2s ease-out forwards',
         halo: 'halo 2.4s ease-out forwards',
       },
     },

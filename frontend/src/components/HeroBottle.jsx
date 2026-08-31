@@ -19,7 +19,7 @@ export default function HeroBottle({ slides, index }) {
         left: 12 + Math.random() * 76, // %
         size: 2 + Math.random() * 3.5, // px
         delay: Math.random() * 0.9, // s
-        duration: 2.2 + Math.random() * 1.6, // s
+        duration: 1.5, // s
         drift: -18 + Math.random() * 36, // px
       })),
     []
@@ -35,7 +35,7 @@ export default function HeroBottle({ slides, index }) {
             alt={slide.brand}
             loading={i === 0 ? 'eager' : 'lazy'}
             aria-hidden={i !== index}
-            className={`absolute inset-0 h-full w-full object-contain drop-shadow-[0_28px_38px_rgba(0,0,0,0.55)] transition-all duration-[1600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] ${
+            className={`absolute inset-y-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_28px_38px_rgba(0,0,0,0.55)] transition-all duration-[1600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] ${
               i === index
                 ? 'scale-100 opacity-100 blur-0'
                 : 'pointer-events-none scale-[0.88] opacity-0 blur-[6px]'
