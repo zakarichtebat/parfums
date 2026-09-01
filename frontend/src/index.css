@@ -28,6 +28,14 @@
   .caps {
     @apply font-display uppercase tracking-wider2;
   }
+  /* Bande defilante sans barre visible */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
   /* Forme "arche" des cartes produit : coins superieurs tres arrondis */
   .arch {
     border-radius: 34px 34px 14px 14px;
