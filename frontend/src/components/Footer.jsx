@@ -20,7 +20,7 @@ export default function Footer() {
   }
 
   return (
-    <footer id="contact" ref={ref} className="relative scroll-mt-24 overflow-hidden border-t border-ink/10 bg-sand-dark pt-20">
+    <footer ref={ref} className="relative overflow-hidden border-t border-ink/10 bg-sand-dark pt-20">
       {/* Voile dore tres discret */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(176,141,46,0.22),transparent_55%)]" />
 

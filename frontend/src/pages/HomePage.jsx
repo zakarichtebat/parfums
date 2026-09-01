@@ -3,6 +3,7 @@ import Hero from '../components/Hero'
 import WaveDivider from '../components/WaveDivider'
 import ProductsSection from '../components/ProductsSection'
 import AboutSection from '../components/AboutSection'
+import ContactSection from '../components/ContactSection'
 import { MOCK_PERFUMES } from '../data/perfumes'
 
 // Vitrine : les quatre parfums les plus populaires.
@@ -24,6 +25,7 @@ export default function HomePage() {
       <main>
         <ProductsSection perfumes={FEATURED} />
         <AboutSection />
+        <ContactSection />
       </main>
     </>
   )
