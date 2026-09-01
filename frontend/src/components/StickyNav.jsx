@@ -55,7 +55,8 @@ export default function StickyNav() {
 
 export function CartButton({ count = 0, className = '' }) {
   return (
-    <button
+    <Link
+      to="/cart"
       aria-label={`Panier, ${count} article(s)`}
       className={`relative grid h-9 w-9 place-items-center rounded-full border border-ink/20 text-ink transition-colors hover:border-gold hover:text-gold-dark ${className}`}
     >
@@ -79,6 +80,6 @@ export function CartButton({ count = 0, className = '' }) {
           {count}
         </span>
       )}
-    </button>
+    </Link>
   )
 }

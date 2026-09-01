@@ -69,6 +69,11 @@ export default {
           '35%': { transform: 'scale(1.45)' },
           '65%': { transform: 'scale(0.92)' },
         },
+        // Panneau de confirmation qui glisse depuis la droite.
+        slideInRight: {
+          '0%': { opacity: 0, transform: 'translateX(120%)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
+        },
         // Descente de la barre de navigation compacte.
         slideDown: {
           '0%': { opacity: 0, transform: 'translateY(-100%)' },
@@ -89,6 +94,7 @@ export default {
         shine: 'shine 1.1s ease-out',
         bump: 'bump .5s ease-out',
         slideDown: 'slideDown .45s ease-out both',
+        slideInRight: 'slideInRight .45s cubic-bezier(0.22,0.61,0.36,1) both',
       },
     },
   },
