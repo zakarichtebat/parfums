@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "comment": "React Router gere les routes cote navigateur : toute URL inconnue doit renvoyer index.html. Les fichiers reels (assets, images) sont servis avant cette regle.",
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

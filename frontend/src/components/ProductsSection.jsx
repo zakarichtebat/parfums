@@ -27,15 +27,15 @@ export default function ProductsSection({ perfumes, loading = false }) {
   }
 
   const goTo = (i) => {
-    window.__goto = { i, hasTrack: !!trackRef.current }
     const track = trackRef.current
     const card = track?.children[i]
     if (!track || !card) return
     // Le defilement doux natif est ignore sur un conteneur scroll-snap :
     // on anime scrollLeft nous-memes.
-    const target = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2
-    window.__goto = { ...window.__goto, target, before: track.scrollLeft }
-    tweenScroll(track, target)
+    tweenScroll(
+      track,
+      card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2
+    )
   }
 
   return (
