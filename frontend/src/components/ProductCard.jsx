@@ -38,7 +38,7 @@ export default function ProductCard({ perfume, dark = false }) {
               e.currentTarget.src = fallback_url
             }
           }}
-          className="h-64 w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110 sm:h-72"
+          className="aspect-[3/4] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
         />
 
         {/* Voile qui se leve au survol */}

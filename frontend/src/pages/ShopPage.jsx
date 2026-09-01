@@ -170,7 +170,7 @@ export default function ShopPage() {
                 </p>
               </div>
             ) : (
-              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-6 xl:grid-cols-3">
                 {visible.map((perfume, i) => (
                   <div
                     key={perfume.id}

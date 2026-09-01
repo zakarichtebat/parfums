@@ -27,13 +27,15 @@ export default function ProductsSection({ perfumes, loading = false }) {
   }
 
   const goTo = (i) => {
+    window.__goto = { i, hasTrack: !!trackRef.current }
     const track = trackRef.current
     const card = track?.children[i]
     if (!track || !card) return
-    track.scrollTo({
-      left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2,
-      behavior: 'smooth',
-    })
+    // Le defilement doux natif est ignore sur un conteneur scroll-snap :
+    // on anime scrollLeft nous-memes.
+    const target = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2
+    window.__goto = { ...window.__goto, target, before: track.scrollLeft }
+    tweenScroll(track, target)
   }
 
   return (
@@ -67,7 +69,6 @@ export default function ProductsSection({ perfumes, loading = false }) {
           <div
             ref={(node) => {
               trackRef.current = node
-              window.__trackDebug = { node, ref: trackRef }
               gridRef.current = node
             }}
             onScroll={(e) => syncActive(e.currentTarget)}
@@ -116,6 +117,22 @@ export default function ProductsSection({ perfumes, loading = false }) {
       </div>
     </section>
   )
+}
+
+/** Deplace scrollLeft jusqu'a `to` en douceur (450 ms, easeOutCubic). */
+function tweenScroll(element, to, duration = 450) {
+  const from = element.scrollLeft
+  const distance = to - from
+  if (Math.abs(distance) < 1) return
+
+  const start = performance.now()
+  const step = (now) => {
+    const progress = Math.min((now - start) / duration, 1)
+    const eased = 1 - Math.pow(1 - progress, 3)
+    element.scrollLeft = from + distance * eased
+    if (progress < 1) requestAnimationFrame(step)
+  }
+  requestAnimationFrame(step)
 }
 
 function BrushStroke() {
